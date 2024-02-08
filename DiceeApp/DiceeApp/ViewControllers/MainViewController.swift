@@ -10,19 +10,31 @@ import UIKit
 final class MainViewController: UIViewController {
     
     // MARK: Private properties
-    private lazy var backgroundImageView = makeImageView(withImage: "GreenBackground")
-    private lazy var diceeLogoImageView = makeImageView(withImage: "DiceeLogo")
-    private lazy var leftDiceImageView = makeImageView(withImage: "DiceFive")
-    private lazy var rightDiceImageView = makeImageView(withImage: "DiceThree")
+    private lazy var backgroundImageView = makeImageView(withImage: .background)
+    private lazy var diceeLogoImageView = makeImageView(withImage: .logo)
+    private lazy var leftDiceImageView = makeImageView(withDiceImage: .five)
+    private lazy var rightDiceImageView = makeImageView(withDiceImage: .one)
     private lazy var rollButton = makeButton()
     
+    private enum DiceNumber: String, CaseIterable {
+        case one = "DiceOne"
+        case two = "DiceTwo"
+        case three = "DiceThree"
+        case four = "DiceFour"
+        case five = "DiceFive"
+        case six = "DiceSix"
+    }
+    
+    private enum DiceLogo: String {
+        case background = "GreenBackground"
+        case logo = "DiceeLogo"
+    }
 
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
     }
-
 }
 
 // MARK: - Private Methods
@@ -37,21 +49,28 @@ extension MainViewController {
         setupRollButtonConstraints()
     }
     
-    private func makeImageView(withImage title: String ) -> UIImageView {
+    private func makeImageView(withDiceImage dice: DiceNumber? = nil, withImage image: DiceLogo? = nil) -> UIImageView {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: title)
-//        imageView.image = #imageLiteral(resourceName: "DiceSix")
+        imageView.image = dice != nil ? UIImage(named: dice?.rawValue ?? "")
+                                      : UIImage(named: image?.rawValue ?? "")
         return imageView
     }
+    
     
     private func makeButton() -> UIButton {
         let button = UIButton()
         button.configuration = .filled()
         button.configuration?.title = "Roll"
         button.configuration?.attributedTitle?.font = .systemFont(ofSize: 32)
+        button.addTarget(self, action: #selector(rollButtonPressed), for: .touchUpInside)
         return button
     }
     
+    @objc
+    private func rollButtonPressed() {
+        leftDiceImageView.image = UIImage(named: DiceNumber.allCases.randomElement()?.rawValue ?? "")
+        rightDiceImageView.image = UIImage(named: DiceNumber.allCases.randomElement()?.rawValue ?? "")
+    }
 }
 
 // MARK: - Constraints
@@ -111,4 +130,3 @@ extension MainViewController {
         ])
     }
 }
-
