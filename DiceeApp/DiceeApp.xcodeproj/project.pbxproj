@@ -12,6 +12,11 @@
 		AD3BA6182B74178600D115A8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3BA6172B74178600D115A8 /* MainViewController.swift */; };
 		AD3BA61D2B74178700D115A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3BA61C2B74178700D115A8 /* Assets.xcassets */; };
 		AD3BA6202B74178700D115A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD3BA61E2B74178700D115A8 /* LaunchScreen.storyboard */; };
+		AD3BA6302B75272D00D115A8 /* DiceLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3BA62F2B75272D00D115A8 /* DiceLogoView.swift */; };
+		AD3BA6332B7527DF00D115A8 /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3BA6322B7527DF00D115A8 /* UIImageView+extension.swift */; };
+		AD3BA6362B75287D00D115A8 /* ProjectImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3BA6352B75287D00D115A8 /* ProjectImage.swift */; };
+		AD3BA6382B752B2F00D115A8 /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3BA6372B752B2F00D115A8 /* DiceView.swift */; };
+		AD3BA63A2B752DE500D115A8 /* RollButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3BA6392B752DE500D115A8 /* RollButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		AD3BA61C2B74178700D115A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD3BA61F2B74178700D115A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD3BA6212B74178700D115A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD3BA62F2B75272D00D115A8 /* DiceLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceLogoView.swift; sourceTree = "<group>"; };
+		AD3BA6322B7527DF00D115A8 /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
+		AD3BA6352B75287D00D115A8 /* ProjectImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectImage.swift; sourceTree = "<group>"; };
+		AD3BA6372B752B2F00D115A8 /* DiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
+		AD3BA6392B752DE500D115A8 /* RollButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				AD3BA6272B7417A600D115A8 /* Application */,
+				AD3BA6342B75284000D115A8 /* Helpers */,
+				AD3BA6312B7527B500D115A8 /* Extensions */,
 				AD3BA6282B7417B000D115A8 /* ViewControllers */,
 				AD3BA6292B7417B800D115A8 /* Resources */,
 				AD3BA62A2B7417D200D115A8 /* SupportingFiles */,
@@ -74,6 +86,7 @@
 		AD3BA6282B7417B000D115A8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AD3BA62E2B7526D700D115A8 /* Views */,
 				AD3BA6172B74178600D115A8 /* MainViewController.swift */,
 			);
 			path = ViewControllers;
@@ -94,6 +107,32 @@
 				AD3BA6212B74178700D115A8 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		AD3BA62E2B7526D700D115A8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD3BA62F2B75272D00D115A8 /* DiceLogoView.swift */,
+				AD3BA6372B752B2F00D115A8 /* DiceView.swift */,
+				AD3BA6392B752DE500D115A8 /* RollButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AD3BA6312B7527B500D115A8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AD3BA6322B7527DF00D115A8 /* UIImageView+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AD3BA6342B75284000D115A8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AD3BA6352B75287D00D115A8 /* ProjectImage.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,7 +207,12 @@
 			files = (
 				AD3BA6182B74178600D115A8 /* MainViewController.swift in Sources */,
 				AD3BA6142B74178600D115A8 /* AppDelegate.swift in Sources */,
+				AD3BA6332B7527DF00D115A8 /* UIImageView+extension.swift in Sources */,
+				AD3BA6362B75287D00D115A8 /* ProjectImage.swift in Sources */,
+				AD3BA6302B75272D00D115A8 /* DiceLogoView.swift in Sources */,
+				AD3BA6382B752B2F00D115A8 /* DiceView.swift in Sources */,
 				AD3BA6162B74178600D115A8 /* SceneDelegate.swift in Sources */,
+				AD3BA63A2B752DE500D115A8 /* RollButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
