@@ -13,6 +13,11 @@
 		ADB8BFCC2B7AA89E00B740C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ADB8BFCA2B7AA89E00B740C6 /* LaunchScreen.storyboard */; };
 		ADB8BFD82B7AA95400B740C6 /* EggViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFD72B7AA95400B740C6 /* EggViewController.swift */; };
 		ADB8BFDB2B7AAB2300B740C6 /* alarm_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = ADB8BFDA2B7AAB2300B740C6 /* alarm_sound.mp3 */; };
+		ADB8BFDE2B7B697400B740C6 /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFDD2B7B697400B740C6 /* UIImage+extension.swift */; };
+		ADB8BFE12B7B6A6700B740C6 /* EggInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFE02B7B6A6700B740C6 /* EggInfo.swift */; };
+		ADB8BFE32B7B6D7C00B740C6 /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFE22B7B6D7C00B740C6 /* UIButton+extension.swift */; };
+		ADB8BFE52B7B764C00B740C6 /* EggView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFE42B7B764C00B740C6 /* EggView.swift */; };
+		ADB8BFE72B7B9A3700B740C6 /* UIStackView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB8BFE62B7B9A3700B740C6 /* UIStackView+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		ADB8BFCD2B7AA89E00B740C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADB8BFD72B7AA95400B740C6 /* EggViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggViewController.swift; sourceTree = "<group>"; };
 		ADB8BFDA2B7AAB2300B740C6 /* alarm_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_sound.mp3; sourceTree = "<group>"; };
+		ADB8BFDD2B7B697400B740C6 /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
+		ADB8BFE02B7B6A6700B740C6 /* EggInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggInfo.swift; sourceTree = "<group>"; };
+		ADB8BFE22B7B6D7C00B740C6 /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
+		ADB8BFE42B7B764C00B740C6 /* EggView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggView.swift; sourceTree = "<group>"; };
+		ADB8BFE62B7B9A3700B740C6 /* UIStackView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				ADB8BFD32B7AA8A600B740C6 /* Application */,
+				ADB8BFDF2B7B6A3100B740C6 /* Helpers */,
+				ADB8BFDC2B7B68B100B740C6 /* Extensions */,
 				ADB8BFD42B7AA8AF00B740C6 /* ViewControllers */,
 				ADB8BFD52B7AA8B800B740C6 /* Resources */,
 				ADB8BFD92B7AAADF00B740C6 /* Sounds */,
@@ -78,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				ADB8BFD72B7AA95400B740C6 /* EggViewController.swift */,
+				ADB8BFE42B7B764C00B740C6 /* EggView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -105,6 +118,24 @@
 				ADB8BFDA2B7AAB2300B740C6 /* alarm_sound.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		ADB8BFDC2B7B68B100B740C6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ADB8BFDD2B7B697400B740C6 /* UIImage+extension.swift */,
+				ADB8BFE22B7B6D7C00B740C6 /* UIButton+extension.swift */,
+				ADB8BFE62B7B9A3700B740C6 /* UIStackView+extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ADB8BFDF2B7B6A3100B740C6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				ADB8BFE02B7B6A6700B740C6 /* EggInfo.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +212,11 @@
 				ADB8BFC02B7AA89D00B740C6 /* AppDelegate.swift in Sources */,
 				ADB8BFD82B7AA95400B740C6 /* EggViewController.swift in Sources */,
 				ADB8BFC22B7AA89D00B740C6 /* SceneDelegate.swift in Sources */,
+				ADB8BFDE2B7B697400B740C6 /* UIImage+extension.swift in Sources */,
+				ADB8BFE52B7B764C00B740C6 /* EggView.swift in Sources */,
+				ADB8BFE72B7B9A3700B740C6 /* UIStackView+extension.swift in Sources */,
+				ADB8BFE12B7B6A6700B740C6 /* EggInfo.swift in Sources */,
+				ADB8BFE32B7B6D7C00B740C6 /* UIButton+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

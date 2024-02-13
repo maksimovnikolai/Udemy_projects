@@ -6,15 +6,23 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class EggViewController: UIViewController {
     
     // MARK: Private Properties
+    private lazy var titleLabel = makeLabel()
     private lazy var mainStackView: UIStackView = .makeStackView(
         axis: .vertical,
         distribution: .fillEqually,
         spacing: 20
     )
+    
+    private var progressView: UIProgressView!
+    private var player: AVAudioPlayer!
+    private lazy var timer = Timer()
+    private var totalTime = 0
+    private var secondsPassed = 0
     
     //MARK: - Life Cycle
     override func viewDidLoad() {
@@ -25,16 +33,65 @@ final class EggViewController: UIViewController {
     }
 }
 
+//MARK: - Logic
+extension EggViewController {
+    
+    @objc
+    private func buttonDidTap(_ sender: UIButton) {
+        
+        guard let currentTitle = sender.configuration?.title else { return }
+        
+        switch currentTitle {
+        case EggInfo.soft.rawValue:
+            totalTime = EggInfo.soft.eggTime
+        case EggInfo.medium.rawValue:
+            totalTime = EggInfo.medium.eggTime
+        default:
+            totalTime = EggInfo.hard.eggTime
+        }
+        
+        progressView.progress = 0.0
+        secondsPassed = 0
+        titleLabel.text = currentTitle
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc
+    private func updateTimer() {
+        
+        if secondsPassed < totalTime {
+            secondsPassed += 1
+            progressView.setProgress(Float(totalTime), animated: true)
+        } else {
+            timer.invalidate()
+            titleLabel.text = "DONE!"
+            playSound()
+        }
+    }
+    
+    private func playSound() {
+        guard let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3") else { return }
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player.play()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+}
+
 //MARK: - Configure UI
 extension EggViewController {
     
     private func configureMainStacks() {
-        [makeLabel(), configureEggStackView(), makeProgressView()].forEach {
+        [titleLabel, configureEggStackView(), makeProgressView()].forEach {
             mainStackView.addArrangedSubview($0)
         }
     }
     
-    private func makeLabel() -> UIView  {
+    private func makeLabel() -> UILabel  {
         let label = UILabel()
         label.text = "How do you like yours eggs?"
         label.textAlignment = .center
@@ -66,16 +123,14 @@ extension EggViewController {
         return view
     }
     
-    @objc
-    private func buttonDidTap(_ sender: UIButton) {
-        print(sender.titleLabel?.text ?? "")
-    }
-    
     private func makeProgressView() -> UIView {
         let customView = UIView()
-        let progressView = UIProgressView(progressViewStyle: .bar)
+        progressView = UIProgressView(progressViewStyle: .bar)
+        let transform : CGAffineTransform = CGAffineTransform(scaleX: 1.0, y: 6.0)
+        progressView.transform = transform
         progressView.progress = 0.5
-        progressView.progressTintColor = .systemYellow
+        progressView.progressTintColor = .systemRed
+        progressView.trackTintColor = .systemGray
         customView.addSubview(progressView)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         progressView.centerYAnchor.constraint(equalTo: customView.centerYAnchor).isActive = true

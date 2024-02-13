@@ -26,11 +26,11 @@ enum EggInfo: String, CaseIterable {
     var eggTime: Int {
         switch self {
         case .soft:
-            return 3
+            return 5
         case .medium:
-            return 4
-        case .hard:
             return 7
+        case .hard:
+            return 12
         }
     }
 }
