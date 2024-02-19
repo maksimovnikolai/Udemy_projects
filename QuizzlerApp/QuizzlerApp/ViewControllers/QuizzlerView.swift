@@ -31,6 +31,7 @@ final class QuizzlerView: UIView {
        let label = UILabel()
         label.text = "Question Label"
         label.textColor = .white
+        label.numberOfLines = 0
         label.font = .boldSystemFont(ofSize: 30)
         label.textAlignment = .natural
         label.setContentCompressionResistancePriority(.init(rawValue: 1000), for: .vertical)
@@ -43,6 +44,8 @@ final class QuizzlerView: UIView {
     
     public lazy var progressView = makeProgressView()
     
+    
+    public var answerButtons = [UIButton]()
     
     //MARK: Init
     override init(frame: CGRect) {
@@ -62,6 +65,7 @@ extension QuizzlerView {
         backgroundColor = UIColor(red: 37/255, green: 44/255, blue: 74/255, alpha: 1)
         setupBackgroundImageViewConstraints()
         setupStackViewConstraints()
+        answerButtons = [choice1Button, choice2Button, choice3Button]
     }
 }
 
