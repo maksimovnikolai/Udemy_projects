@@ -10,12 +10,6 @@ import UIKit
 final class QuizzlerView: UIView {
     
     //MARK: Properties
-    public lazy var backgroundImageView: UIImageView = {
-       let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "Background-Bubbles")
-        return imageView
-    }()
-    
     public lazy var stackView = makeStackView()
     
     public lazy var scoreLabel: UILabel = {
@@ -43,8 +37,7 @@ final class QuizzlerView: UIView {
     public lazy var choice3Button = makeButton(withTitle: "Choice 3")
     
     public lazy var progressView = makeProgressView()
-    
-    
+
     public var answerButtons = [UIButton]()
     
     //MARK: Init
@@ -63,7 +56,6 @@ extension QuizzlerView {
     
     private func commonInit() {
         backgroundColor = UIColor(red: 37/255, green: 44/255, blue: 74/255, alpha: 1)
-        setupBackgroundImageViewConstraints()
         setupStackViewConstraints()
         answerButtons = [choice1Button, choice2Button, choice3Button]
     }
@@ -71,18 +63,7 @@ extension QuizzlerView {
 
 //MARK: - Constraints
 extension QuizzlerView {
-    
-    private func setupBackgroundImageViewConstraints() {
-        addSubview(backgroundImageView)
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            backgroundImageView.heightAnchor.constraint(equalToConstant: 100)
-        ])
-    }
-    
+
     private func setupStackViewConstraints() {
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,7 +71,7 @@ extension QuizzlerView {
             stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
         ])
     }
 }
