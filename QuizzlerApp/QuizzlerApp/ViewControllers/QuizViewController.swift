@@ -30,9 +30,16 @@ final class QuizViewController: UIViewController {
 extension QuizViewController {
     
     private func commonInit() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        configureNavBar()
         addTargetForAnswerButtons()
         updateUI()
+    }
+    
+    private func configureNavBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
     }
 
     private func addTargetForAnswerButtons() {
