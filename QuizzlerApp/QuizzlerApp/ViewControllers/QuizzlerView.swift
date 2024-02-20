@@ -105,6 +105,7 @@ extension QuizzlerView {
         button.configuration?.title = title
         button.configuration?.baseForegroundColor = .white
         button.configuration?.background.image = #imageLiteral(resourceName: "Rectangle")
+        button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.heightAnchor.constraint(equalToConstant: 80).isActive = true
         return button
@@ -132,7 +133,7 @@ extension QuizzlerView {
     private func makeProgressView() -> UIProgressView {
         let pv = UIProgressView(progressViewStyle: .bar)
         pv.progress = 0.5
-        pv.tintColor = .purple
+        pv.tintColor = .systemPink
         pv.trackTintColor = .white
         pv.backgroundColor = .white
         pv.translatesAutoresizingMaskIntoConstraints = false

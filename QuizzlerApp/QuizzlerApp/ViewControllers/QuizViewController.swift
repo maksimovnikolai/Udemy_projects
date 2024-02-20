@@ -30,6 +30,7 @@ final class QuizViewController: UIViewController {
 extension QuizViewController {
     
     private func commonInit() {
+        navigationController?.navigationBar.prefersLargeTitles = true
         addTargetForAnswerButtons()
         updateUI()
     }
@@ -61,12 +62,12 @@ extension QuizViewController {
         quizzlerView.choice2Button.setTitle(answerChoices[1], for: .normal)
         quizzlerView.choice3Button.setTitle(answerChoices[2], for: .normal)
         
+        navigationItem.title = "Question № \(quizBrain.setCurrentQuestionNumber())"
+        
         quizzlerView.questionLabel.text = quizBrain.getQuestionText()
         quizzlerView.progressView.progress = quizBrain.getProgress()
         quizzlerView.scoreLabel.text = "Score: \(quizBrain.getScore())"
-        
-        quizzlerView.choice1Button.backgroundColor = .clear
-        quizzlerView.choice2Button.backgroundColor = .clear
-        quizzlerView.choice3Button.backgroundColor = .clear
+    
+        quizzlerView.answerButtons.forEach { $0.backgroundColor = .clear }
     }
 }

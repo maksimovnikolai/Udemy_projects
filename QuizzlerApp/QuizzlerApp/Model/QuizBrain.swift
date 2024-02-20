@@ -59,4 +59,8 @@ struct QuizBrain {
     func setTitle() -> [String] {
         quiz[questionNumber].answers
     }
+    
+    func setCurrentQuestionNumber() -> Int {
+        return questionNumber + 1
+    }
 }
