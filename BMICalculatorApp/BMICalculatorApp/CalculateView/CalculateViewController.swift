@@ -9,8 +9,10 @@ import UIKit
 
 final class CalculateViewController: UIViewController {
     
+    // MARK: Private Properties
     private let calculateView = CalculateView()
     
+    // MARK: Life Cycle
     override func loadView() {
         view = calculateView
     }
@@ -22,6 +24,7 @@ final class CalculateViewController: UIViewController {
     }
 }
 
+// MARK: Private Methods
 extension CalculateViewController {
     
     private func commonInit() {
@@ -31,7 +34,7 @@ extension CalculateViewController {
     private func addTargets() {
         calculateView.heightSlider.addTarget(self, action: #selector(heighSliderDidChange), for: .valueChanged)
         calculateView.weightSlider.addTarget(self, action: #selector(weightSliderDidChange), for: .valueChanged)
-        
+        calculateView.button.addTarget(self, action: #selector(showResultView), for: .touchUpInside)
     }
     
     @objc
@@ -42,7 +45,13 @@ extension CalculateViewController {
     
     @objc
     private func weightSliderDidChange() {
-        let weight = String(format: "%.3f", calculateView.weightSlider.value)
+        let weight = String(format: "%.0f", calculateView.weightSlider.value)
         calculateView.weightValueLabel.text = "\(weight)Kg"
+    }
+    
+    @objc
+    private func showResultView() {
+        let resultView = ResultViewController()
+       present(resultView, animated: true)
     }
 }

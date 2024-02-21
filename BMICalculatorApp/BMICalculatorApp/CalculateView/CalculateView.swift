@@ -32,24 +32,24 @@ final class CalculateView: UIView {
     )
     
     public lazy var heightValueLabel = makeLabel(
-        withTitle: "HeightValue",
+        withTitle: String(format: "%.2f", heightSlider.value) + "m",
         font: .systemFont(ofSize: 17)
     )
     
-     lazy var heightSlider = makeSlider()
+    lazy var heightSlider = makeSlider(minValue: 0, maxValue: 3)
     
     // Weight
     private lazy var weightLabel = makeLabel(
-        withTitle: "Weight",
+        withTitle: "Weight" ,
         font: .systemFont(ofSize: 17, weight: .light)
     )
     
     public lazy var weightValueLabel = makeLabel(
-        withTitle: "WeightValue",
+        withTitle: String(format: "%.0f", weightSlider.value) + "Kg",
         font: .systemFont(ofSize: 17, weight: .light)
     )
     
-    public lazy var weightSlider = makeSlider()
+    public lazy var weightSlider = makeSlider(minValue: 0, maxValue: 200)
     
     public lazy var button = makeButton(withTitle: "CALCULATE")
     
@@ -75,8 +75,6 @@ extension CalculateView {
     }
     
     private func setupMainVStack() {
-        heightValueLabel.text = String(format: "%.2f", heightSlider.value)
-        weightValueLabel.text = String(format: "%.3f", weightSlider.value)
         let heightHStack = makeHStack(heightLabel, heightValueLabel)
         let weightHStack = makeHStack(weightLabel, weightValueLabel)
         
@@ -110,11 +108,11 @@ extension CalculateView {
         return label
     }
     
-    private func makeSlider() -> UISlider {
+    private func makeSlider(minValue: Float, maxValue: Float ) -> UISlider {
         let slider = UISlider()
-        slider.minimumValue = 0
-        slider.maximumValue = 3
-        slider.value = 1.5
+        slider.minimumValue = minValue
+        slider.maximumValue = maxValue
+        slider.value = (minValue + maxValue) / 2
         slider.heightAnchor.constraint(equalToConstant: 60).isActive = true
         return slider
     }

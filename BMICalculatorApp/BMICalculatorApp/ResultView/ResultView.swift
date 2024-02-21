@@ -9,6 +9,7 @@ import UIKit
 
 final class ResultView: UIView {
     
+    // MARK: Properties
     lazy var backgroundImage = makeImageView()
     
     lazy var resultTitle = makeLabel(withTitle: "YOUR RESULT",
@@ -39,6 +40,7 @@ final class ResultView: UIView {
     }
 }
 
+// MARK: - Private Properties
 extension ResultView {
     
     private func commonInit() {
@@ -64,6 +66,7 @@ extension ResultView {
     
 }
 
+// MARK: - Constraints
 extension ResultView {
     
     private func setupBackgroundImageConstraints() {
@@ -98,7 +101,7 @@ extension ResultView {
     }
 }
 
-
+// MARK: - UI Elements
 extension ResultView {
     
     private func makeImageView() -> UIImageView {
