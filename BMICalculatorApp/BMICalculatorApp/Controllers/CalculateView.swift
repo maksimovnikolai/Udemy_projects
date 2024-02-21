@@ -36,7 +36,7 @@ final class CalculateView: UIView {
         font: .systemFont(ofSize: 17)
     )
     
-    public lazy var heightSlider = makeSlider()
+     lazy var heightSlider = makeSlider()
     
     // Weight
     private lazy var weightLabel = makeLabel(
@@ -51,7 +51,7 @@ final class CalculateView: UIView {
     
     public lazy var weightSlider = makeSlider()
     
-    public lazy var calculateButton = makeButton(withTitle: "CALCULATE")
+    public lazy var button = makeButton(withTitle: "CALCULATE")
     
     
     // MARK: Init
@@ -75,6 +75,8 @@ extension CalculateView {
     }
     
     private func setupMainVStack() {
+        heightValueLabel.text = String(format: "%.2f", heightSlider.value)
+        weightValueLabel.text = String(format: "%.3f", weightSlider.value)
         let heightHStack = makeHStack(heightLabel, heightValueLabel)
         let weightHStack = makeHStack(weightLabel, weightValueLabel)
         
@@ -84,7 +86,7 @@ extension CalculateView {
             heightSlider,
             weightHStack,
             weightSlider,
-            calculateButton,
+            button,
         ].forEach { mainVStack.addArrangedSubview($0) }
     }
 }
