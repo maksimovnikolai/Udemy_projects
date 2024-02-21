@@ -39,14 +39,14 @@ struct QuizBrain {
     }
 
     func getProgress() -> Float {
-        Float(questionNumber + 1) / Float(quiz.count)
+        Float(questionNumber) / Float(quiz.count)
     }
     
-    mutating func nextQuestion() {
+    mutating func nextQuestion(completion: () -> Void) {
         if questionNumber + 1 < quiz.count {
             questionNumber += 1
-            
         } else {
+            completion()
             questionNumber = 0
             score = 0
         }

@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 final class QuizViewController: UIViewController {
     
     //MARK: Private Properties
@@ -54,7 +56,9 @@ extension QuizViewController {
         let userGotItRight = quizBrain.checkAnswer(userAnswer ?? "")
         
         sender.backgroundColor = userGotItRight ? .green : .red
-        quizBrain.nextQuestion()
+        quizBrain.nextQuestion {
+            showResult()
+        }
         
         Timer.scheduledTimer(timeInterval: 0.2, target: self,
                              selector: #selector(updateUI),
@@ -64,7 +68,9 @@ extension QuizViewController {
     
     @objc
     private func updateUI() {
+        
         let answerChoices = quizBrain.setTitle()
+        
         quizzlerView.choice1Button.setTitle(answerChoices[0], for: .normal)
         quizzlerView.choice2Button.setTitle(answerChoices[1], for: .normal)
         quizzlerView.choice3Button.setTitle(answerChoices[2], for: .normal)
@@ -76,5 +82,14 @@ extension QuizViewController {
         quizzlerView.scoreLabel.text = "Score: \(quizBrain.getScore())"
     
         quizzlerView.answerButtons.forEach { $0.backgroundColor = .clear }
+    }
+    
+    private func showResult() {
+        let message = "Correct answers: \(quizzlerView.scoreLabel.text ?? "")"
+        let alert = UIAlertController(title: "Done!", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Restart", style: .default)
+        
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
