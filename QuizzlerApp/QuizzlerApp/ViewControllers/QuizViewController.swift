@@ -12,7 +12,7 @@ import UIKit
 final class QuizViewController: UIViewController {
     
     //MARK: Private Properties
-    private let quizzlerView = QuizzlerView()
+    private let quizzlerView = QuizView()
     private var quizBrain = QuizBrain()
     
     // MARK: Life cycle

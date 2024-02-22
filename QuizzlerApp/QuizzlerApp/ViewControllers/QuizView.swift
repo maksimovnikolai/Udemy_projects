@@ -1,13 +1,13 @@
 //
-//  QuizzlerView.swift
-//  QuizzlerApp
+//  QuizView.swift
+//  QuizApp
 //
 //  Created by Nikolai Maksimov on 19.02.2024.
 //
 
 import UIKit
 
-final class QuizzlerView: UIView {
+final class QuizView: UIView {
     
     //MARK: Properties
     public lazy var stackView = makeStackView()
@@ -52,7 +52,7 @@ final class QuizzlerView: UIView {
 }
 
 //MARK: - Private Methods
-extension QuizzlerView {
+extension QuizView {
     
     private func commonInit() {
         backgroundColor = UIColor(red: 37/255, green: 44/255, blue: 74/255, alpha: 1)
@@ -62,7 +62,7 @@ extension QuizzlerView {
 }
 
 //MARK: - Constraints
-extension QuizzlerView {
+extension QuizView {
 
     private func setupStackViewConstraints() {
         addSubview(stackView)
@@ -77,7 +77,7 @@ extension QuizzlerView {
 }
 
 //MARK: - Methods for creating UI
-extension QuizzlerView {
+extension QuizView {
     
     private func makeButton(withTitle title: String) -> UIButton {
         let button = UIButton()
