@@ -10,14 +10,19 @@ import UIKit
 final class QuizView: UIView {
     
     //MARK: Properties
-    public lazy var stackView = makeStackView()
+    private lazy var scoreTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Score: "
+        label.textColor = .white
+        label.setContentHuggingPriority(.init(251), for: .horizontal)
+        return label
+    }()
+    public lazy var mainVStackView = makeVStackView()
     
-    public lazy var scoreLabel: UILabel = {
+    public lazy var scoreValueLabel: UILabel = {
         let label = UILabel()
         label.text = "Score label"
         label.textColor = .white
-        label.setContentCompressionResistancePriority(.init(251), for: .horizontal)
-        label.setContentCompressionResistancePriority(.init(251), for: .vertical)
         return label
     }()
     
@@ -65,13 +70,13 @@ extension QuizView {
 extension QuizView {
 
     private func setupStackViewConstraints() {
-        addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(mainVStackView)
+        mainVStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            mainVStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            mainVStackView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            mainVStackView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            mainVStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
         ])
     }
 }
@@ -92,14 +97,27 @@ extension QuizView {
         return button
     }
     
-    private func makeStackView() -> UIStackView {
+    private func configureLabelsStackView() -> UIStackView {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.alignment = .fill
+        stack.distribution = .fill
+        stack.spacing = 0
+        [scoreTitleLabel, scoreValueLabel].forEach {
+            stack.addArrangedSubview($0)
+        }
+        
+        return stack
+    }
+    
+    private func makeVStackView() -> UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
         [
-            scoreLabel,
+            configureLabelsStackView(),
             questionLabel,
             choice1Button,
             choice2Button,

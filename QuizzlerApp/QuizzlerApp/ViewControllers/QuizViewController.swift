@@ -8,27 +8,24 @@
 import UIKit
 
 
-
 final class QuizViewController: UIViewController {
     
-    //MARK: Private Properties
-    private let quizzlerView = QuizView()
+    // MARK: Private Properties
+    private let quizView = QuizView()
     private var quizBrain = QuizBrain()
     
     // MARK: Life cycle
-    // Load View Method
     override func loadView() {
-        view = quizzlerView
+        view = quizView
     }
-    
-    // View Did Load Method
+
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
     }
 }
 
-//MARK: - Private Methods
+// MARK: - Private Methods
 extension QuizViewController {
     
     private func commonInit() {
@@ -45,7 +42,7 @@ extension QuizViewController {
     }
 
     private func addTargetForAnswerButtons() {
-        quizzlerView.answerButtons.forEach {
+        quizView.answerButtons.forEach {
             $0.addTarget(self, action: #selector(answerButtonPressed), for: .touchUpInside)
         }
     }
@@ -71,21 +68,22 @@ extension QuizViewController {
         
         let answerChoices = quizBrain.setTitle()
         
-        quizzlerView.choice1Button.setTitle(answerChoices[0], for: .normal)
-        quizzlerView.choice2Button.setTitle(answerChoices[1], for: .normal)
-        quizzlerView.choice3Button.setTitle(answerChoices[2], for: .normal)
+        quizView.choice1Button.setTitle(answerChoices[0], for: .normal)
+        quizView.choice2Button.setTitle(answerChoices[1], for: .normal)
+        quizView.choice3Button.setTitle(answerChoices[2], for: .normal)
         
         navigationItem.title = "Question № \(quizBrain.setCurrentQuestionNumber())"
         
-        quizzlerView.questionLabel.text = quizBrain.getQuestionText()
-        quizzlerView.progressView.progress = quizBrain.getProgress()
-        quizzlerView.scoreLabel.text = "Score: \(quizBrain.getScore())"
+        quizView.questionLabel.text = quizBrain.getQuestionText()
+        quizView.progressView.progress = quizBrain.getProgress()
+        quizView.scoreValueLabel.text = "\(quizBrain.getScore())"
     
-        quizzlerView.answerButtons.forEach { $0.backgroundColor = .clear }
+        quizView.answerButtons.forEach { $0.backgroundColor = .clear }
     }
     
     private func showResult() {
-        let message = "Correct answers: \(quizzlerView.scoreLabel.text ?? "")"
+        let score = quizView.scoreValueLabel.text
+        let message = "Number of correct answers: \(score ?? "")"
         let alert = UIAlertController(title: "Done!", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Restart", style: .default)
         
