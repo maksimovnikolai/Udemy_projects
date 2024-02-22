@@ -9,10 +9,27 @@ import UIKit
 
 final class CalculateView: UIView {
     
-    //MARK: - Properties
+    // MARK: Properties
+    lazy var heightValueLabel = makeLabel(
+        withTitle: String(format: "%.2f", heightSlider.value) + "m",
+        font: .systemFont(ofSize: 17)
+    )
+    
+    lazy var weightValueLabel = makeLabel(
+       withTitle: String(format: "%.0f", weightSlider.value) + "Kg",
+       font: .systemFont(ofSize: 17, weight: .light)
+   )
+    
+    lazy var heightSlider = makeSlider(minValue: 0, maxValue: 3)
+    lazy var weightSlider = makeSlider(minValue: 0, maxValue: 200)
+ 
+    lazy var button = makeButton(withTitle: "CALCULATE")
+    
+    
+    // MARK: Private Properties
     private lazy var backgroundImage = makeImageView()
     
-    // Общий стек
+    
     private lazy var mainVStack = makeMainVStack()
     
     private lazy var titleLabel: UILabel = {
@@ -25,34 +42,15 @@ final class CalculateView: UIView {
         return label
     }()
     
-    // Height
     private lazy var heightLabel = makeLabel(
         withTitle: "Height",
         font: .systemFont(ofSize: 17)
     )
     
-    public lazy var heightValueLabel = makeLabel(
-        withTitle: String(format: "%.2f", heightSlider.value) + "m",
-        font: .systemFont(ofSize: 17)
-    )
-    
-    lazy var heightSlider = makeSlider(minValue: 0, maxValue: 3)
-    
-    // Weight
     private lazy var weightLabel = makeLabel(
         withTitle: "Weight" ,
         font: .systemFont(ofSize: 17, weight: .light)
     )
-    
-    public lazy var weightValueLabel = makeLabel(
-        withTitle: String(format: "%.0f", weightSlider.value) + "Kg",
-        font: .systemFont(ofSize: 17, weight: .light)
-    )
-    
-    public lazy var weightSlider = makeSlider(minValue: 0, maxValue: 200)
-    
-    public lazy var button = makeButton(withTitle: "CALCULATE")
-    
     
     // MARK: Init
     override init(frame: CGRect) {
@@ -113,6 +111,8 @@ extension CalculateView {
         slider.minimumValue = minValue
         slider.maximumValue = maxValue
         slider.value = (minValue + maxValue) / 2
+        slider.thumbTintColor = .init(named: "sliderColor")
+        slider.minimumTrackTintColor = .init(named: "sliderColor")
         slider.heightAnchor.constraint(equalToConstant: 60).isActive = true
         return slider
     }
@@ -121,6 +121,9 @@ extension CalculateView {
         let button = UIButton()
         button.configuration = .filled()
         button.configuration?.title = title
+        button.configuration?.attributedTitle?.font = .systemFont(ofSize: 20)
+        button.configuration?.baseForegroundColor = .white
+        button.configuration?.baseBackgroundColor = .init(named: "buttonColor")
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         return button
     }

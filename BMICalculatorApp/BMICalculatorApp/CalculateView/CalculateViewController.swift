@@ -11,6 +11,7 @@ final class CalculateViewController: UIViewController {
     
     // MARK: Private Properties
     private let calculateView = CalculateView()
+    private var calculateBrain = CalculateBrain()
     
     // MARK: Life Cycle
     override func loadView() {
@@ -19,7 +20,6 @@ final class CalculateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         commonInit()
     }
 }
@@ -51,7 +51,18 @@ extension CalculateViewController {
     
     @objc
     private func showResultView() {
-        let resultView = ResultViewController()
+        calculateBMI()
+        let resultView = ResultViewController(
+            bmiValue: calculateBrain.getBMIValue(),
+            advice: calculateBrain.getAdvice(),
+            color: calculateBrain.getColor()
+        )
        present(resultView, animated: true)
+    }
+    
+    private func calculateBMI() {
+        let height = calculateView.heightSlider.value
+        let weight = calculateView.weightSlider.value
+        calculateBrain.calculateBMI(height: height, weight: weight)
     }
 }

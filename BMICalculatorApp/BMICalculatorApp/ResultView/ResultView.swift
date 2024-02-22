@@ -9,27 +9,33 @@ import UIKit
 
 final class ResultView: UIView {
     
-    // MARK: Properties
-    lazy var backgroundImage = makeImageView()
+    // MARK: Public Properties
+    lazy var bmiValueLabel = makeLabel(
+        withTitle: "12",
+        font: .boldSystemFont(ofSize: 80),
+        hugPrior: 251,
+        comprPrior: 1000
+    )
     
-    lazy var resultTitle = makeLabel(withTitle: "YOUR RESULT",
-                                     font: .boldSystemFont(ofSize: 35),
-                                     hugPrior: 251,
-                                     comprPrior: 1000)
-    
-    lazy var resultValue = makeLabel(withTitle: "12",
-                                     font: .boldSystemFont(ofSize: 80),
-                                     hugPrior: 251,
-                                     comprPrior: 1000)
-    
-    lazy var textLabel = makeLabel(withTitle: "EAT SOME MORE SNACKS!",
-                                   font: .systemFont(ofSize: 20, weight: .light),
-                                   hugPrior: 251)
+    lazy var adviceLabel = makeLabel(
+        withTitle: "EAT SOME MORE SNACKS!",
+        font: .systemFont(ofSize: 20, weight: .light),
+        hugPrior: 251
+    )
     
     lazy var button = makeButton(withTitle: "RECALCULATE")
     
-    lazy var vStack = makeMainVStack()
+    // MARK: Private Properties
+    private lazy var backgroundImage = makeImageView()
+    private lazy var vStack = makeMainVStack()
+    private lazy var resultTitle = makeLabel(
+        withTitle: "YOUR RESULT",
+        font: .boldSystemFont(ofSize: 35),
+        hugPrior: 251,
+        comprPrior: 1000
+    )
     
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -44,11 +50,6 @@ final class ResultView: UIView {
 extension ResultView {
     
     private func commonInit() {
-        backgroundColor = UIColor(red: 52/250,
-                                  green: 123/250,
-                                  blue: 197/250,
-                                  alpha: 1)
-        
         setupBackgroundImageConstraints()
         setupVStack()
         setupStackViewConstraints()
@@ -56,14 +57,10 @@ extension ResultView {
     }
     
     private func setupVStack() {
-        
-        [
-            resultTitle,
-            resultValue,
-            textLabel,
-        ].forEach { vStack.addArrangedSubview($0) }
+        [resultTitle, bmiValueLabel, adviceLabel].forEach {
+            vStack.addArrangedSubview($0)
+        }
     }
-    
 }
 
 // MARK: - Constraints
@@ -127,10 +124,7 @@ extension ResultView {
         button.configuration?.title = title
         button.configuration?.attributedTitle?.font = .systemFont(ofSize: 20)
         button.configuration?.baseBackgroundColor = .white
-        button.configuration?.baseForegroundColor = UIColor(red: 98/250,
-                                                            green: 96/250,
-                                                            blue: 157/250,
-                                                            alpha: 1)
+        button.configuration?.baseForegroundColor = .init(named: "buttonColor")
         return button
     }
     

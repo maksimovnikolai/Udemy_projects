@@ -12,9 +12,21 @@ final class ResultViewController: UIViewController {
     // MARK: Properties
     private let resultView = ResultView()
     
-    var bmiValue: String?
-    var advice: String?
-    var color: UIColor?
+    private var bmiValue: String
+    private var advice: String
+    private var color: UIColor
+    
+    // MARK: Init
+    init(bmiValue: String, advice: String, color: UIColor) {
+        self.bmiValue = bmiValue
+        self.advice = advice
+        self.color = color
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: Life Cycle
     override func loadView() {
@@ -36,8 +48,8 @@ extension ResultViewController {
     }
     
     private func updateUI() {
-        resultView.resultTitle.text = advice
-        resultView.resultValue.text = bmiValue
+        resultView.adviceLabel.text = advice
+        resultView.bmiValueLabel.text = bmiValue
         resultView.backgroundColor = color
     }
     
